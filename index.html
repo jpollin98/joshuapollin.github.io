@@ -422,6 +422,55 @@
 				margin-top: 10px;
 			}
 
+
+			/* Left-hand header: stronger white text + fixed sidebar on desktop */
+			#header {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 35%;
+				height: 100vh;
+				overflow: hidden;
+			}
+
+			#header::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				z-index: 0;
+			}
+
+			#header .inner {
+				position: relative;
+				z-index: 1;
+			}
+
+			#header h1,
+			#header h1 strong,
+			#header p,
+			#header a {
+				color: #ffffff !important;
+				font-weight: 700 !important;
+				text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+			}
+
+			#main {
+				margin-left: 35%;
+			}
+
+			@media screen and (max-width: 980px) {
+				#header {
+					position: relative;
+					width: 100%;
+					height: auto;
+					overflow: visible;
+				}
+
+				#main {
+					margin-left: 0;
+				}
+			}
+
 		</style>
 	</head>
 	<body class="is-preload">
@@ -452,12 +501,12 @@
 			<div class="inner">
 				<a href="#" class="avatar"><img src="images/avatar.png" alt="Joshua Pollin" /></a>
 				<h1><strong>Dr Joshua Pollin</strong></h1>
-				<p>Postdoctoral Scholar in Astrophysics<br />
+				<p style="font-weight: 700; color: #ffffff;">Postdoctoral Scholar in Astrophysics<br />
 				Oregon State University</p>
-				<p style="max-width: 700px; margin: 20px auto;">
+				<p style="max-width: 700px; margin: 20px auto; font-weight: 700; color: #ffffff;">
 				Type Ia supernovae are precision cosmological tools, yet their origin remains unkown. I develop 3D radiative transfer models to link explosion physics directly to observables.
 				</p>
-				<p style="max-width: 700px; margin: 20px auto; font-weight: 500;">
+				<p style="max-width: 700px; margin: 20px auto; font-weight: 700; color: #ffffff;">
 				My aim is to unify the diversity of thermonuclear supernovae within a single framework, and extend full NLTE modelling across transients — from thermonuclear to core-collapse.
 				</p>
 			</div>
