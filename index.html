@@ -9,7 +9,6 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
 		<style>
-			/* Mobile-friendly navigation bar styles */
 			.navbar {
 				position: sticky;
 				top: 0;
@@ -20,7 +19,6 @@
 				box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 				border: none;
 			}
-
 			.navbar-container {
 				display: flex;
 				justify-content: space-between;
@@ -28,13 +26,11 @@
 				padding: 0 20px;
 				width: 100%;
 			}
-
 			.nav-links {
 				display: flex;
 				justify-content: center;
 				flex-grow: 1;
 			}
-
 			.navbar a {
 				display: inline-block;
 				color: white;
@@ -46,22 +42,13 @@
 				border: none;
 				outline: none;
 			}
-
-			.navbar a:hover {
-				background-color: #555;
-			}
-
-			.navbar a.active {
-				background-color: #4CAF50;
-			}
-
-			/* Hamburger menu */
+			.navbar a:hover { background-color: #555; }
+			.navbar a.active { background-color: #4CAF50; }
 			.menu-toggle {
 				display: none;
 				cursor: pointer;
 				padding: 14px 0;
 			}
-
 			.bar {
 				display: block;
 				width: 25px;
@@ -70,13 +57,8 @@
 				background-color: white;
 				transition: all 0.3s ease-in-out;
 			}
-
-			/* Responsive navigation for mobile */
 			@media screen and (max-width: 768px) {
-				.menu-toggle {
-					display: block;
-				}
-				
+				.menu-toggle { display: block; }
 				.nav-links {
 					position: absolute;
 					top: 100%;
@@ -88,41 +70,25 @@
 					overflow: hidden;
 					transition: max-height 0.5s ease;
 				}
-				
 				.nav-links.active {
 					max-height: 500px;
 					box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 				}
-				
 				.navbar a {
 					display: block;
 					width: 100%;
 					text-align: left;
 					padding: 14px 20px;
 				}
-				
-				/* Hamburger to X animation */
-				.menu-toggle.active .bar:nth-child(1) {
-					transform: translateY(8px) rotate(45deg);
-				}
-				
-				.menu-toggle.active .bar:nth-child(2) {
-					opacity: 0;
-				}
-				
-				.menu-toggle.active .bar:nth-child(3) {
-					transform: translateY(-8px) rotate(-45deg);
-				}
+				.menu-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+				.menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+				.menu-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 			}
-			
-			/* Fix any potential outline or border on the body or header elements */
 			body, #header, .navbar, #main, section {
 				outline: none;
 				border-top: none;
 				border-bottom: none;
 			}
-			
-			/* Collapsible header styles - IMPROVED */
 			.collapsible {
 				background-color: #f5f5f5;
 				color: #444;
@@ -141,11 +107,7 @@
 				justify-content: space-between;
 				align-items: center;
 			}
-
-			.active, .collapsible:hover {
-				background-color: #e0e0e0;
-			}
-
+			.active, .collapsible:hover { background-color: #e0e0e0; }
 			.collapsible:after {
 				content: '\2212';
 				color: #777;
@@ -153,22 +115,16 @@
 				margin-left: 5px;
 				transition: 0.2s;
 			}
-
-			.collapsible.collapsed:after {
-				content: '\002B';
-				transform: rotate(0deg);
-			}
-
+			.collapsible.collapsed:after { content: '\002B'; }
 			.content {
 				background-color: white;
 				overflow: hidden;
 				transition: max-height 0.4s ease-out, padding 0.3s ease;
-				max-height: 2000px; /* Starting with large max-height */
+				max-height: 2000px;
 				padding: 20px;
 				border-radius: 0 0 5px 5px;
 				margin-bottom: 30px;
 			}
-
 			.content.collapsed {
 				max-height: 0;
 				padding-top: 0;
@@ -176,15 +132,12 @@
 				margin-bottom: 0;
 				opacity: 0.8;
 			}
-			
-			/* Video container styling */
 			.video-container {
 				position: relative;
-				padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+				padding-bottom: 56.25%;
 				height: 0;
 				margin-bottom: 30px;
 			}
-			
 			.video-container iframe {
 				position: absolute;
 				top: 0;
@@ -192,8 +145,6 @@
 				width: 100%;
 				height: 100%;
 			}
-
-			/* Video container for local mp4 */
 			.video-container-local {
 				width: 100%;
 				margin-bottom: 20px;
@@ -201,152 +152,70 @@
 				overflow: hidden;
 				box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 			}
-
-			.video-container-local video {
-				width: 100%;
-				display: block;
-			}
-
-			/* Add this to your existing CSS */
+			.video-container-local video { width: 100%; display: block; }
 			.icon img.bluesky-logo {
-				filter: grayscale(100%); /* Convert the logo to grayscale */
-				transition: filter 0.3s ease; /* Smooth transition for hover effect */
+				filter: grayscale(100%);
+				transition: filter 0.3s ease, opacity 0.3s ease;
 			}
-
-			.icon img.bluesky-logo:hover {
-				filter: grayscale(0%); /* Revert to full color on hover */
-			}
-			
-			.icon a[href*="github.com"]:hover {
-				color: #000000; /* GitHub black */
-			}
-
-			/* ORCID */
-			.icon a[href*="orcid.org"]:hover {
-				color: #A6CE39; /* ORCID green */
-			}
-
-			/* Instagram */
-			.icon a[href*="instagram.com"]:hover {
-				color: #E1306C; /* Instagram pink */
-			}
-
-			/* Email */
-			.icon a[href^="mailto:"]:hover {
-				color: #D44638; /* Gmail red */
-			}
-
+			.icon img.bluesky-logo:hover { filter: grayscale(0%); opacity: 1; }
+			.icon a[href*="github.com"]:hover { color: #000000; }
+			.icon a[href*="orcid.org"]:hover { color: #A6CE39; }
+			.icon a[href*="instagram.com"]:hover { color: #E1306C; }
+			.icon a[href^="mailto:"]:hover { color: #D44638; }
 			.avatar img {
-				width: 200px; /* Set the desired width */
-				height: 200px; /* Set the desired height */
-				object-fit: cover; /* Ensures the image scales proportionally */
-				border-radius: 50%; /* Optional: Keeps the image circular if it's a profile picture */
+				width: 200px;
+				height: 200px;
+				object-fit: cover;
+				border-radius: 50%;
 			}
-			
-			
-			.icon a {
-				color: inherit; /* Inherit the default color */
-				transition: color 0.3s ease; /* Smooth transition for hover effect */
-			}
-
-			.icon a:hover {
-				color: #1DA1F2; /* Twitter blue color for consistency */
-			}
-
-			/* Specific styles for the Bluesky logo */
-			.icon img.bluesky-logo {
-				filter: grayscale(100%); /* Convert the logo to grayscale */
-				transition: filter 0.3s ease, opacity 0.3s ease; /* Smooth transition for hover effect */
-			}
-
-			.icon img.bluesky-logo:hover {
-				filter: grayscale(0%); /* Revert to full color on hover */
-				opacity: 1; /* Ensure full visibility */
-			}
-			
-			/* Standardized science plots - FIXED */
+			.icon a { color: inherit; transition: color 0.3s ease; }
+			.icon a:hover { color: #1DA1F2; }
 			.work-item .image.fit.thumb {
 				position: relative;
 				width: 100%;
 				height: 0;
-				padding-bottom: 75%; /* Maintain 4:3 aspect ratio */
+				padding-bottom: 75%;
 				overflow: hidden;
 				margin-bottom: 1em;
 			}
-			
 			.work-item .image.fit.thumb img {
 				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				object-fit: cover; /* Cover the container while maintaining aspect ratio */
+				top: 0; left: 0;
+				width: 100%; height: 100%;
+				object-fit: cover;
 			}
-			
-			/* Fix for specific science plot images */
-			.work-item .image.fit.thumb img[src*="Presentation1.gif"] {
-				object-fit: contain; /* Changed from cover to maintain aspect ratio */
-				height: auto;
-				min-height: 100%;
-			}
-
+			.work-item .image.fit.thumb img[src*="Presentation1.gif"] { object-fit: contain; height: auto; min-height: 100%; }
 			.work-item .image.fit.thumb img[src*="multid_nebular.png"],
-			.work-item .image.fit.thumb img[src*="Photospheric.png"] {
-				object-fit: contain; /* Changed from cover to maintain aspect ratio */
-				width: auto;
-				min-width: 100%;
-			}
-			
-			/* Image gallery styles */
+			.work-item .image.fit.thumb img[src*="Photospheric.png"] { object-fit: contain; width: auto; min-width: 100%; }
 			.gallery-container {
 				position: relative;
 				width: 100%;
 				height: 0;
-				padding-bottom: 56.25%; /* 16:9 aspect ratio */
+				padding-bottom: 56.25%;
 				margin-bottom: 30px;
 				overflow: hidden;
 				border-radius: 5px;
 				box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 			}
-			
 			.gallery-slide {
 				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
+				top: 0; left: 0;
+				width: 100%; height: 100%;
 				opacity: 0;
 				transition: opacity 1s ease-in-out;
 				display: none;
 			}
-			
-			.gallery-slide.active {
-				opacity: 1;
-				display: block;
-			}
-			
-			.gallery-slide img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
-			
+			.gallery-slide.active { opacity: 1; display: block; }
+			.gallery-slide img { width: 100%; height: 100%; object-fit: cover; }
 			.gallery-caption {
 				position: absolute;
-				bottom: 0;
-				left: 0;
-				right: 0;
+				bottom: 0; left: 0; right: 0;
 				background-color: rgba(0,0,0,0.7);
 				color: white;
 				padding: 10px;
 				text-align: center;
 			}
-			
-			.gallery-nav {
-				text-align: center;
-				margin-top: 10px;
-			}
-			
+			.gallery-nav { text-align: center; margin-top: 10px; }
 			.gallery-nav button {
 				background-color: #333;
 				color: white;
@@ -357,41 +226,18 @@
 				cursor: pointer;
 				transition: background-color 0.3s;
 			}
-			
-			.gallery-nav button:hover {
-				background-color: #555;
-			}
-			
-			.gallery-dots {
-				text-align: center;
-				margin-top: 10px;
-			}
-			
+			.gallery-nav button:hover { background-color: #555; }
+			.gallery-dots { text-align: center; margin-top: 10px; }
 			.gallery-dot {
 				display: inline-block;
-				width: 12px;
-				height: 12px;
+				width: 12px; height: 12px;
 				background-color: #bbb;
 				border-radius: 50%;
 				margin: 0 5px;
 				cursor: pointer;
 				transition: background-color 0.3s;
 			}
-			
-			.gallery-dot.active {
-				background-color: #333;
-			}
-			
-			/* AI acknowledgment styling */
-			.ai-acknowledgment {
-				font-size: 0.7em;
-				color: #888;
-				margin-top: 10px;
-				text-align: center;
-				font-style: italic;
-			}
-
-			/* New research highlight styling */
+			.gallery-dot.active { background-color: #333; }
 			.figure-panel {
 				background: #fafafa;
 				border-radius: 10px;
@@ -399,21 +245,8 @@
 				box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 				margin: 20px 0;
 			}
-
-			.figure-panel img {
-				width: 100%;
-				height: auto;
-				border-radius: 6px;
-				display: block;
-				background: white;
-			}
-
-			.figure-caption {
-				margin-top: 12px;
-				font-size: 0.95em;
-				color: #555;
-			}
-
+			.figure-panel img { width: 100%; height: auto; border-radius: 6px; display: block; background: white; }
+			.figure-caption { margin-top: 12px; font-size: 0.95em; color: #555; }
 			.research-pill-list {
 				display: flex;
 				flex-wrap: wrap;
@@ -422,22 +255,7 @@
 				padding: 0;
 				list-style: none;
 			}
-
-			.research-pill-list li {
-				background: #f0f4f8;
-				border-radius: 999px;
-				padding: 8px 14px;
-				font-size: 0.95em;
-			}
-
-			.highlight-note {
-				font-size: 1.05em;
-				font-weight: 600;
-				color: #333;
-				margin-top: 10px;
-			}
-
-			/* Highlight cards for recent news */
+			.research-pill-list li { background: #f0f4f8; border-radius: 999px; padding: 8px 14px; font-size: 0.95em; }
 			.highlight-card {
 				background: #f0f4f8;
 				border-left: 4px solid #4CAF50;
@@ -445,92 +263,30 @@
 				padding: 14px 18px;
 				margin-bottom: 16px;
 			}
-
-			.highlight-card h4 {
-				margin: 0 0 6px 0;
-				font-size: 1em;
-				color: #222;
-			}
-
-			.highlight-card p {
-				margin: 0;
-				font-size: 0.93em;
-				color: #555;
-			}
-
-			/* D6² image panel */
-			.d6-panel {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 20px;
-				align-items: flex-start;
-				margin: 20px 0;
-			}
-
-			.d6-panel img {
-				flex: 1 1 260px;
-				max-width: 320px;
-				border-radius: 8px;
-				box-shadow: 0 4px 12px rgba(0,0,0,0.18);
-				background: #000;
-			}
-
-			.d6-panel-text {
-				flex: 2 1 300px;
-			}
-
-			/* Left-hand header: stronger white text + fixed sidebar on desktop */
+			.highlight-card h4 { margin: 0 0 6px 0; font-size: 1em; color: #222; }
+			.highlight-card p { margin: 0; font-size: 0.93em; color: #555; }
 			#header {
 				position: fixed;
-				top: 0;
-				left: 0;
+				top: 0; left: 0;
 				width: 35%;
 				height: 100vh;
 				overflow: hidden;
 			}
-
-			#header::before {
-				content: '';
-				position: absolute;
-				inset: 0;
-				z-index: 0;
-			}
-
-			#header .inner {
-				position: relative;
-				z-index: 1;
-			}
-
-			#header h1,
-			#header h1 strong,
-			#header p,
-			#header a {
+			#header::before { content: ''; position: absolute; inset: 0; z-index: 0; }
+			#header .inner { position: relative; z-index: 1; }
+			#header h1, #header h1 strong, #header p, #header a {
 				color: #ffffff !important;
 				font-weight: 700 !important;
 				text-shadow: 0 2px 12px rgba(0,0,0,0.45);
 			}
-
-			#main {
-				margin-left: 35%;
-			}
-
+			#main { margin-left: 35%; }
 			@media screen and (max-width: 980px) {
-				#header {
-					position: relative;
-					width: 100%;
-					height: auto;
-					overflow: visible;
-				}
-
-				#main {
-					margin-left: 0;
-				}
+				#header { position: relative; width: 100%; height: auto; overflow: visible; }
+				#main { margin-left: 0; }
 			}
-
 		</style>
 	</head>
 	<body class="is-preload">
-		<!-- Navigation Bar test- UPDATED -->
 		<div class="navbar" id="myNavbar">
 			<div class="navbar-container">
 				<div class="menu-toggle" id="menuToggle">
@@ -555,15 +311,14 @@
 			</div>
 		</div>
 
-		<!-- Header -->
 		<header id="header">
 			<div class="inner">
 				<a href="#" class="avatar"><img src="images/avatar.png" alt="Joshua Pollin" /></a>
-				<h1><strong>Dr Joshua Pollin</strong></h1>
+				<h1><strong>Dr Joshua Pollin (He/Him)</strong></h1>
 				<p style="font-weight: 700; color: #ffffff;">Postdoctoral Scholar in Astrophysics<br />
 				Oregon State University</p>
 				<p style="max-width: 700px; margin: 20px auto; font-weight: 700; color: #ffffff;">
-				Type Ia supernovae are precision cosmological tools, yet their origin remains unkown. I develop 3D radiative transfer models to link explosion physics directly to observables.
+				Type Ia supernovae are precision cosmological tools, yet their origin remains unknown. I develop 3D radiative transfer models to link explosion physics directly to observables.
 				</p>
 				<p style="max-width: 700px; margin: 20px auto; font-weight: 700; color: #ffffff;">
 				My aim is to unify the diversity of thermonuclear supernovae within a single framework, and extend full NLTE modelling across transients — from thermonuclear to core-collapse.
@@ -571,25 +326,21 @@
 			</div>
 		</header>
 
-		<!-- Main -->
 		<div id="main">
 
-			<!-- ===================== ABOUT ME (NEW) ===================== -->
-						<!-- ===================== ABOUT ME (NEW) ===================== -->
+			<!-- ABOUT ME -->
 			<section id="about">
 				<button class="collapsible">About Me</button>
 				<div class="content">
 					<p>
 						I grew up near Holywood, Northern Ireland, and went to Queen's University Belfast (QUB) to study a BSc in Physics before switching to an integrated Masters. It was during my Masters research project that I fell in love with transient astrophysics — and I haven't looked back since. My Masters and PhD were supervised by <strong>Professor Stuart Sim</strong> at QUB, where I developed a deep interest for radiative transfer and the physics of exploding stars.
 					</p>
- 
 					<p>
 						A central focus of my PhD was the <strong>dynamically-driven double-degenerate double-detonation (D6) scenario</strong>, which I believe is the most promising progenitor for normal Type Ia supernovae. In this scenario, two white dwarfs in a binary system interact — both can explode, and as such are often called quadruple detonation events. The video below illustrates this remarkable process.
 					</p>
 					<p>
 						Outside of research, I enjoy running (I recently finished my first half marathon!), rock climbing, hiking, and video games. I believe strongly that astronomy and astrophysics is for everyone, and I thrive in collaborative, supportive environments where people lift each other up.
-					</p>					
- 
+					</p>
 					<div class="video-container-local">
 						<video controls>
 							<source src="videos/quadruple_detonation.mp4" type="video/mp4">
@@ -597,36 +348,39 @@
 						</video>
 					</div>
 					<p style="font-size:0.9em; color:#666; margin-top: -10px; margin-bottom: 20px; text-align: center;"><em>3D hydrodynamic simulation of the D6 scenario (movie credit: R. Pakmor).</em></p>
- 
 					<p>
-						My <a href="https://pure.qub.ac.uk/en/studentTheses/exploring-the-origins-of-type-ia-supernovae-with-monte-carlo-radi/" target="_blank">PhD thesis</a>, <em>"Exploring the Origins of Type Ia Supernovae with Monte Carlo Radiative Transfer"</em>, covers this work in full detail.
+						My <a href="https://pure.qub.ac.uk/en/studentTheses/exploring-the-origins-of-type-ia-supernovae-with-Monte-Carlo-radi/" target="_blank">PhD thesis</a>, <em>"Exploring the Origins of Type Ia Supernovae with Monte Carlo Radiative Transfer"</em>, covers this work in full detail.
 					</p>
- 
 					<ul class="actions">
-						<li><a href="https://pure.qub.ac.uk/en/studentTheses/exploring-the-origins-of-type-ia-supernovae-with-monte-carlo-radi/" class="button" target="_blank">PhD Thesis</a></li>
+						<li><a href="https://pure.qub.ac.uk/en/studentTheses/exploring-the-origins-of-type-ia-supernovae-with-Monte-Carlo-radi/" class="button" target="_blank">PhD Thesis</a></li>
 						<li><a href="documents/Joshua_Pollin_CV.pdf" class="button" target="_blank">My CV</a></li>
 					</ul>
 				</div>
 			</section>
 
-			<!-- ===================== RECENT HIGHLIGHTS (NEW) ===================== -->
+			<!-- RECENT HIGHLIGHTS -->
 			<section id="highlights">
 				<button class="collapsible">Recent Highlights</button>
 				<div class="content">
 
 					<div class="highlight-card">
 						<h4>📄 Paper Accepted — Multidimensional Nebular-Phase Calculations (April 2026)</h4>
-						<p>My paper <em>"Multidimensional Nebular-Phase Calculations of Dynamically-Driven Double-Degenerate Double-Detonation Models for Type Ia Supernovae"</em> has been accepted for publication in MNRAS. This is the first fully 3D NLTE nebular-phase radiative transfer simulations for Type Ia supernovae. <a href="https://arxiv.org/abs/2507.05000" target="_blank">Read on arXiv →</a></p>
+						<p>My paper <em>"Multidimensional Nebular-Phase Calculations of Dynamically-Driven Double-Degenerate Double-Detonation Models for Type Ia Supernovae"</em> has been accepted for publication in MNRAS. This is the first fully 3D NLTE nebular-phase radiative transfer simulation for Type Ia supernovae. <a href="https://arxiv.org/abs/2507.05000" target="_blank">Read on arXiv →</a></p>
 					</div>
 
 					<div class="highlight-card">
 						<h4>🎓 Started Postdoctoral Position at Oregon State University (January 2026)</h4>
-						<p>I recently began a postdoctoral scholar position at Oregon State University, where I am modelling to core-collapse supernovae with <a href="https://www.sanjana-curtis.com/" target="_blank">Dr Sanjana Curtis</a> and building a broader programme for understanding explosive transients.</p>
+						<p>I recently began a postdoctoral scholar position at Oregon State University, where I am extending my modelling to core-collapse supernovae with <a href="https://www.sanjana-curtis.com/" target="_blank">Dr Sanjana Curtis</a> and building a broader programme for understanding explosive transients.</p>
 					</div>
 
 					<div class="highlight-card">
 						<h4>🏆 PhD Awarded — Queen's University Belfast (December 2025)</h4>
-						<p>I successfully completed and defended my PhD at Queen's University Belfast under the supervision of Professor Stuart Sim. My thesis explored the origins of Type Ia supernovae using Monte Carlo radiative transfer. <a href="https://pure.qub.ac.uk/en/studentTheses/exploring-the-origins-of-type-ia-supernovae-with-monte-carlo-radi/" target="_blank">Read the thesis →</a></p>
+						<p>I successfully completed and defended my PhD at Queen's University Belfast under the supervision of Professor Stuart Sim. My thesis explored the origins of Type Ia supernovae using Monte Carlo radiative transfer. <a href="https://pure.qub.ac.uk/en/studentTheses/exploring-the-origins-of-type-ia-supernovae-with-Monte-Carlo-radi/" target="_blank">Read the thesis →</a></p>
+					</div>
+
+					<div class="highlight-card">
+						<h4>🔭 Session Organiser — NAM 2025: Explosive Transients in the Present and Future Sky (July 2025)</h4>
+						<p>I was an integral part of organising and chairing the session <em>"Explosive Transients in the Present and Future Sky"</em> at the National Astronomy Meeting (NAM) 2025 in Durham. The session brought together researchers to present cutting-edge work on transient astrophysics.<a href="https://conference.astro.dur.ac.uk/event/7/sessions/118/#20250709" target="_blank">Session details →</a></p>
 					</div>
 
 					<div class="highlight-card">
@@ -641,23 +395,27 @@
 				</div>
 			</section>
 
-			<!-- About Me / Research Vision -->
+			<!-- RESEARCH VISION -->
 			<section id="one">
 				<button class="collapsible">Research Vision</button>
 				<div class="content">
-					<p>Despite their central role in cosmology, the physical origin and diversity of Type Ia supernovae remain unresolved. My work addresses this by linking multidimensional explosion physics directly to observable spectra through fully consistent NLTE radiative transfer.</p>
+					<p>Type Ia supernovae underpin our measurement of the accelerating expansion of the Universe, yet their physical origin remains unresolved. This gap becomes increasingly critical as next-generation surveys such as LSST and the Roman Space Telescope deliver orders of magnitude more events. Resolving the progenitor question is not just a theoretical problem: uncertainties in SN Ia standardisation directly propagate into cosmological measurements and contributes to the current Hubble tension.</p>
 
-					<p>A central goal of my research is to determine whether the diversity of thermonuclear supernovae can be understood within a unified physical framework. By modelling the full 3D structure of the ejecta, I connect explosion physics and nucleosynthesis directly to spectra, light curves, and late-time diagnostics.</p>
+					<p>My research addresses this by connecting real, state-of-the-art 3D explosion models directly to observations through fully consistent NLTE radiative transfer simulations. Rather than relying on parameterised or 1D approximations, I model the full multidimensional ejecta structure, capturing the geometry, composition, and nucleosynthesis predicted by modern hydrodynamic simulations, and compute the resulting spectra and light curves from first principles.</p>
 
-					<p>More broadly, I am developing next-generation NLTE radiative transfer models that can be applied across the landscape of explosive transients. This includes extending detailed modelling to core-collapse supernovae, enabling direct comparisons between thermonuclear and massive-star explosions within a consistent framework.</p>
+					<p>A central goal is to determine whether the diversity of thermonuclear supernovae can be understood within a unified physical framework. By modelling how white dwarf mass, helium shell properties, and merger geometry shape observables across the full SN Ia population, I aim to establish which explosion channels dominate and how their nucleosynthetic signatures can be used to calibrate and correct for systematic biases in outher research areas.</p>
+
+					<p>A major priority going forward is driving observational investigations. I am especially passionate about <strong>JWST</strong>, which is transforming what is possible in supernova science. JWST opens up entirely new windows into ejecta composition and structure, and connecting my theoretical models directly to JWST observations is something I am actively pursuing. The variations predicted by my multidimensional calculations are already comparable in scale to features seen in recent JWST data, making this a particularly exciting time. If you are working with JWST observations of supernovae or explosive transients, I would very much like to collaborate.</p>
+
+					<p>More broadly, I am developing next-generation NLTE radiative transfer models that can be applied across the landscape of explosive transients. This includes extending detailed modelling to core-collapse supernovae, enabling direct comparisons between thermonuclear and massive-star explosions within a consistent framework, and building a programme in which radiative transfer becomes the primary tool for reading the nucleosynthetic record written in supernova light.</p>
 
 					<div class="figure-panel">
 						<img src="images/Light_curve_evolution.png" alt="Schematic figure illustrating the diffusion phase, early tail phase, and late tail phase of supernova light-curve evolution" />
 						<p class="figure-caption">Different phases of supernova evolution probe different ejecta layers. Late-time calculations are especially powerful for connecting radiative transfer, nucleosynthesis, and the inner structure of the explosion.</p>
 					</div>
 					<div class="figure-panel">
-						<img src="images/Viewing_Angles.png" alt="Schematic figure illustrating the diffusion phase, early tail phase, and late tail phase of supernova light-curve evolution" />
-						<p class="figure-caption">For the first time, it is now possible to make observer-dependent NLTE spectral predictions for modern 3D explosion models. In Pollin et al. (2025), I presented the first such predictions, demonstrating that variations in line profiles arise directly from the ejecta geometry. This links spectral features to the underlying explosion structure—information inaccessible to 1D models. The resulting variations are substantial, comparable to those observed in recent JWST data.</p>
+						<img src="images/Viewing_Angles.png" alt="Schematic figure illustrating viewing-angle dependent spectral predictions for 3D explosion models" />
+						<p class="figure-caption">For the first time, it is now possible to make observer-dependent NLTE spectral predictions for modern 3D explosion models. In Pollin et al. (2025), I presented the first such predictions, demonstrating that variations in line profiles arise directly from the ejecta geometry. This links spectral features to the underlying explosion structure, information inaccessible to 1D models. The resulting variations are substantial, comparable to those observed in recent JWST data.</p>
 					</div>
 
 					<ul class="actions">
@@ -666,26 +424,24 @@
 				</div>
 			</section>
 
+			<!-- TECHNICAL EXPERTISE -->
 			<section id="skills">
 				<button class="collapsible">Technical Expertise</button>
 				<div class="content">
-
 					<p>
 					I develop and run large-scale multidimensional simulations of supernovae, combining radiative transfer, hydrodynamics, and nucleosynthesis on high-performance computing systems.
 					</p>
-
 					<ul class="research-pill-list">
 						<li>3D NLTE Monte Carlo radiative transfer (ARTIS)</li>
-							<li>Hydrodynamic supernova modelling (PUSH)</li>
+						<li>Hydrodynamic supernova modelling (PUSH)</li>
 						<li>Nucleosynthesis post-processing (CFNET)</li>
 						<li>High-performance computing (MPI, OpenMP, ~95M CPU hrs awarded)</li>
 						<li>C/C++, Python, Fortran, Bash</li>
 					</ul>
-
 				</div>
 			</section>
 
-			<!-- Current Projects -->
+			<!-- CURRENT RESEARCH PROJECTS -->
 			<section id="projects">
 				<button class="collapsible">Current Research Projects</button>
 				<div class="content">
@@ -707,27 +463,41 @@
 						</article>
 						<article class="col-6 col-12-xsmall work-item">
 							<a href="images/science_plots/SiII_velocity_one_explosions_peakcolour.png" class="image fit thumb"><img src="images/science_plots/SiII_velocity_one_explosions_peakcolour.png" alt="Code comparison" /></a>
-							<h3>Modelling Across the Explosive Transients landscape</h3>
+							<h3>Modelling Across the Explosive Transients Landscape</h3>
 							<p>Can the same modelling framework be applied to both thermonuclear and massive-star explosions? At Oregon State University, I am conducting hydrodynamic explosions with the goal of extending detailed NLTE radiative transfer calculations beyond Type Ia supernovae to core-collapse events, thereby building a broader programme for interpreting explosive transients within a consistent radiative-transfer framework.</p>
 						</article>
 					</div>
 				</div>
 			</section>
 
-			<!-- Publications -->
+			<!-- PUBLICATIONS -->
 			<section id="two">
 				<button class="collapsible">Publications</button>
 				<div class="content">
-					<h3>Selected First-Author Publications</h3>
+					<h3>First-Author Publications</h3>
 					<div class="row">
 						<div class="col-12">
 							<ul>
 								<li><strong>Pollin et al. (2025)</strong> — <a href="https://arxiv.org/abs/2507.05000" target="_blank">Multidimensional Nebular-Phase Calculations of Dynamically-Driven Double-Degenerate Double-Detonation Models for Type Ia Supernovae</a> (MNRAS, accepted)</li>
 								<li><strong>Pollin et al. (2024)</strong> — <a href="https://academic.oup.com/mnras/article/533/3/3036/7730271" target="_blank">On the Fate of the Secondary White Dwarf in Double-Degenerate Double-Detonation Type Ia Supernovae — II. 3D Synthetic Observables</a> (MNRAS 533, 3036–3052)</li>
 							</ul>
-							<p>I have also contributed to work on electron-capture supernovae, Ca-rich transients, violent mergers, double detonations, and observational studies of peculiar Type Ia supernovae.</p>
 						</div>
-					</div>															
+					</div>
+
+					<h3>Contributing-Author Publications</h3>
+					<div class="row">
+						<div class="col-12">
+							<ul>
+								<li><strong>Callan, Collins, Sim, Shingles, Pakmor, Srivastav, Pollin et al. (2025)</strong> — <a href="https://academic.oup.com/mnras/article/539/2/1404/8109563" target="_blank">Exploring the range of impacts of helium in the spectra of double detonation models for Type Ia supernovae</a> (MNRAS 539, 1404–1413)</li>
+								<li><strong>Pakmor, Shen, Bhat, Rajamuthukumar, Collins, Pollin et al. (2026)</strong> — <a href="https://www.aanda.org/articles/aa/full_html/2025/10/aa54557-25/aa54557-25.html" target="_blank">Violent mergers revisited: The origin of the fastest stars in the Galaxy</a> (A&amp;A 706, A239)</li>
+								<li><strong>Callan, Holas, Morán-Fraile, Sim, Collins, Shingles, Pollin et al. (2025)</strong> — <a href="https://www.aanda.org/articles/aa/full_html/2025/02/aa52466-24/aa52466-24.html" target="_blank">NLTE spectral modelling for a carbon-oxygen and helium white dwarf merger as a Ca-rich transient candidate</a> (A&amp;A 702, A29)</li>
+								<li><strong>Holas, Röpke, Pakmor, Callan, Pollin, Sim, Collins et al. (2025)</strong> — <a href="https://www.aanda.org/articles/aa/full_html/2025/06/aa58910-24/aa58910-24.html" target="_blank">The asymmetry of white dwarf double detonations and the observed scatter around the Phillips relation</a> (A&amp;A 698, A269)</li>
+								<li><strong>Srivastav, Moore, Nicholl, Magee, Smartt, Fulton, Pollin et al. (2023)</strong> — <a href="https://iopscience.iop.org/article/10.3847/2041-8213/acf3e7" target="_blank">Unprecedented early flux excess in the hybrid 02es-like type Ia supernova 2022ywc indicates interaction with circumstellar material</a> (ApJL 956, L34)</li>
+								<li><strong>Shingles, Collins, Holas, Callan, Sim, Pollin et al. (2023)</strong> — <a href="https://zenodo.org/records/14961766" target="_blank">artistools</a> (Zenodo)</li>
+							</ul>
+						</div>
+					</div>
+								
 					<ul class="actions">
 						<li><a href="https://ui.adsabs.harvard.edu/search/p_=0&q=author%3A%22Pollin%2C%20J.%20M.%22&sort=date%20desc%2C%20bibcode%20desc" class="button">ADS Publication List</a></li>
 						<li><a href="https://scholar.google.com/citations?user=RyTosYAAAAAJ&hl=en" class="button" target="_blank">Google Scholar</a></li>
@@ -735,12 +505,11 @@
 				</div>
 			</section>
 
-			<!-- Research Impact -->
+			<!-- KEY CONTRIBUTIONS -->
 			<section id="impact">
 				<button class="collapsible">Key Contributions</button>
 				<div class="content">
 					<p>My work combines code development, large-scale simulation campaigns, and observational interpretation. Selected contributions include:</p>
-					
 					<ul>
 						<li>Developed the first fully 3D NLTE nebular-phase radiative transfer simulations for Type Ia supernovae.</li>
 						<li>Produced the first multidimensional photospheric-phase synthetic observables of dynamical mergers.</li>
@@ -749,18 +518,21 @@
 						<li>Contributed to successful large-scale proposals on DiRAC, JUWELS, and SuperMUC-NG, translating computational resources into first-author and collaborative publications.</li>
 						<li>Expanded my research programme to include core-collapse supernova modelling and nucleosynthesis post-processing.</li>					
 					</ul>
-
-					<p>Other highlights include co-investigator status on a successful ESO VLT FORS2 proposal, invited talks at Trinity College Dublin and Leiden, and organising a National Astronomy Meeting session on explosive transients.</p>
+					<p>Other highlights include co-investigator status on a successful ESO VLT FORS2 proposal, invited talks at Trinity College Dublin and Leiden, and being an integral part of organising and chairing the session <em>"Explosive Transients in the Present and Future Sky"</em> at the National Astronomy Meeting (NAM) 2025 in Durham, a session composed entirely of early-career researchers.</p>
 				</div>
 			</section>
 
-			<!-- ===================== TEACHING, OUTREACH & TALKS (NEW) ===================== -->
+			<!-- TEACHING, OUTREACH & TALKS -->
 			<section id="outreach">
 				<button class="collapsible">Teaching, Outreach &amp; Talks</button>
 				<div class="content">
-
 					<p>
-						I believe strongly that <strong>astronomy and astrophysics is for everyone</strong>. Science thrives when it is open, inclusive, and collaborative — and I am committed to contributing to an environment where people from all backgrounds feel welcome and supported. We are stronger together, and diversity of perspective makes for better science and scientists.
+						I believe strongly that <strong>astronomy and astrophysics is for everyone</strong>. Science thrives when it is open, inclusive, and collaborative, and I am committed to contributing to an environment where people from all backgrounds feel welcome and supported. We are stronger together, and diversity of perspective makes for better science and scientists.
+					</p>
+
+					<h3>Conference Organisation</h3>
+					<p>
+						I was an integral part of organising and chairing the session <strong>"Explosive Transients in the Present and Future Sky"</strong> at the <strong>National Astronomy Meeting (NAM) 2025</strong> in Durham. The session brought together early-career researchers to present their work on transient astrophysics, and I am proud to have played a central role in making it happen. Creating dedicated space for the next generation of astronomers to share their research and build connections within the community is something I care deeply about. <a href="https://conference.astro.dur.ac.uk/event/7/sessions/118/#20250709" target="_blank">Session details →</a>
 					</p>
 
 					<h3>Recent Talks</h3>
@@ -772,18 +544,17 @@
 
 					<h3>Mentoring</h3>
 					<p>
-						I recently mentored <strong>Anna Hayes</strong> as a summer research assistant, supporting her in developing skills in radiative transfer analysis and scientific computing, and has continued into academia. Mentoring the next generation of astrophysicists is something I care deeply about, and I enjoy creating a supportive environment where students feel empowered to ask questions and pursue their own curiosity.
+						I recently mentored <strong>Anna Hayes</strong> as a summer research assistant, supporting her in developing skills in radiative transfer analysis and scientific computing. Mentoring the next generation of astrophysicists is something I care deeply about, and I enjoy creating a supportive environment where students feel empowered to ask questions and pursue their own curiosity.
 					</p>
 
 					<h3>Outreach</h3>
 					<p>
 						I am passionate about communicating astrophysics beyond the academic community. I enjoy public engagement and am happy to talk about supernovae, cosmology, and the life cycle of stars to audiences of all ages and backgrounds. If you are interested in an outreach event or school visit, please feel free to <a href="#three">get in touch</a>.
 					</p>
-
 				</div>
 			</section>
 
-			<!-- Contact -->
+			<!-- CONTACT -->
 			<section id="three">
 				<button class="collapsible">Get In Touch</button>
 				<div class="content">
@@ -798,22 +569,20 @@
 							<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
 							<a href="mailto:pollinj@oregonstate.edu">pollinj@oregonstate.edu</a>
 						</li>
-						<li>
+						<!-- <li>
 							<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
 							<a href="mailto:jpollin02@qub.ac.uk">jpollin02@qub.ac.uk</a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 			</section>
 
-			<!-- Map Section -->
+			<!-- MAP -->
 			<section id="map">
 				<button class="collapsible">My Research Map</button>
 				<div class="content">
 					<p>This map shows places I have lived and locations where I have given research talks or presented my work.</p>
-					
 					<div id="research-map" style="width: 100%; height: 400px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
-					
 					<div class="map-legend" style="display: flex; justify-content: center; margin-bottom: 20px;">
 						<div style="margin-right: 20px; display: flex; align-items: center;">
 							<span style="display: inline-block; width: 20px; height: 20px; background-color: #e74c3c; border-radius: 50%; margin-right: 5px;"></span>
@@ -827,122 +596,64 @@
 				</div>
 			</section>
 
-			<!-- Add this to your head section -->
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
-
-			<!-- Add this before your closing body tag -->
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
 			<script>
 				document.addEventListener('DOMContentLoaded', function() {
-					// Initialize map after collapsible is expanded to ensure proper rendering
 					const mapCollapsible = document.querySelector('#map .collapsible');
 					const mapContent = document.querySelector('#map .content');
 					let map = null;
 					
-					// Function to initialize the map
 					function initializeMap() {
-						if (map) return; // Don't initialize twice
-						
-						// Create map with initial view centered on Europe
+						if (map) return;
 						map = L.map('research-map').setView([46.0, -25.0], 3);
-						
-						// Add OpenStreetMap tiles
 						L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 							attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						}).addTo(map);
-						
-						// Custom icons for different types of locations
 						const talkIcon = L.divIcon({
 							className: 'custom-marker',
 							html: '<div style="background-color: #e74c3c; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>',
-							iconSize: [20, 20],
-							iconAnchor: [10, 10]
+							iconSize: [20, 20], iconAnchor: [10, 10]
 						});
-						
 						const workIcon = L.divIcon({
 							className: 'custom-marker',
 							html: '<div style="background-color: #3498db; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>',
-							iconSize: [20, 20],
-							iconAnchor: [10, 10]
+							iconSize: [20, 20], iconAnchor: [10, 10]
 						});
-						
-						// Initial locations
-						// Talk location
-						L.marker([49.4093, 8.6946], {icon: talkIcon})
-							.addTo(map)
-							.bindPopup('<strong>Heidelberg, Germany</strong><br>Gave a research talk (2022,2023,2024)');    						
-						L.marker([41.3851, 2.1734], {icon: talkIcon})
-							.addTo(map)
-							.bindPopup('<strong>Barcelona, Spain</strong><br>Conference presentation (2024)');
-							
-						L.marker([53.3498, -6.2603], {icon: talkIcon})
-							.addTo(map)
-							.bindPopup('<strong>Dublin, Ireland</strong><br>Research talk (2025)');
-							
-						L.marker([51.5074, -0.1278], {icon: talkIcon})
-							.addTo(map)
-							.bindPopup('<strong>London, UK</strong><br>Research talk (2024)');
-						L.marker([51.7520, -1.2577], {icon: talkIcon})
-							.addTo(map)
-							.bindPopup('<strong>Oxford, UK</strong><br>Research talk (2024)');
-						
-						L.marker([51.4816, -3.1791], {icon: talkIcon})
-							.addTo(map)
-							.bindPopup('<strong>Cardiff, UK</strong><br>Research talk (2023)');					
-							
-						L.marker([56.4620, -2.9707], {icon: talkIcon})
-							.addTo(map)
-							.bindPopup('<strong>Dundee, UK</strong><br>Workshop (2022)');
-							
-						L.marker([54.7767, -1.5761], {icon: talkIcon})
-							.addTo(map)
-							.bindPopup('<strong>Durham, UK</strong><br>Confrence Talk (2025)');
-						
-						// Work/living location
-						L.marker([54.5973, -5.9301], {icon: workIcon})
-							.addTo(map)
-							.bindPopup('<strong>Belfast, Northern Ireland</strong><br>Queen\'s University Belfast');
-
-						L.marker([44.5646, -123.2620], {icon: workIcon})
-							.addTo(map)
-							.bindPopup('<strong>Corvallis, Oregon, USA</strong><br>Oregon State University');
-						
-						// Fix map rendering issue
-						setTimeout(function() {
-							map.invalidateSize();
-						}, 500);
+						L.marker([49.4093, 8.6946], {icon: talkIcon}).addTo(map).bindPopup('<strong>Heidelberg, Germany</strong><br>Gave a research talk (2022,2023,2024)');
+						L.marker([41.3851, 2.1734], {icon: talkIcon}).addTo(map).bindPopup('<strong>Barcelona, Spain</strong><br>Conference presentation (2024)');
+						L.marker([53.3498, -6.2603], {icon: talkIcon}).addTo(map).bindPopup('<strong>Dublin, Ireland</strong><br>Research talk (2025)');
+						L.marker([51.5074, -0.1278], {icon: talkIcon}).addTo(map).bindPopup('<strong>London, UK</strong><br>Research talk (2024)');
+						L.marker([51.7520, -1.2577], {icon: talkIcon}).addTo(map).bindPopup('<strong>Oxford, UK</strong><br>Research talk (2024)');
+						L.marker([51.4816, -3.1791], {icon: talkIcon}).addTo(map).bindPopup('<strong>Cardiff, UK</strong><br>Research talk (2023)');
+						L.marker([56.4620, -2.9707], {icon: talkIcon}).addTo(map).bindPopup('<strong>Dundee, UK</strong><br>Workshop (2022)');
+						L.marker([54.7767, -1.5761], {icon: talkIcon}).addTo(map).bindPopup('<strong>Durham, UK</strong><br>Conference Talk / NAM 2025 Session Organiser (2025)');
+						L.marker([54.5973, -5.9301], {icon: workIcon}).addTo(map).bindPopup('<strong>Belfast, Northern Ireland</strong><br>Queen\'s University Belfast');
+						L.marker([44.5646, -123.2620], {icon: workIcon}).addTo(map).bindPopup('<strong>Corvallis, Oregon, USA</strong><br>Oregon State University');
+						setTimeout(function() { map.invalidateSize(); }, 500);
 					}
 					
-					// Initialize map when section is expanded
 					if (mapCollapsible) {
 						mapCollapsible.addEventListener('click', function() {
 							if (!this.classList.contains('collapsed')) {
-								// Section is being expanded
-								setTimeout(initializeMap, 300); // Delay to ensure container is visible
+								setTimeout(initializeMap, 300);
 							}
 						});
 					}
-					
-					// Initialize map if section is already expanded on page load
 					if (mapContent && !mapContent.classList.contains('collapsed')) {
 						setTimeout(initializeMap, 300);
 					}
-					
-					// Also initialize on window resize to fix rendering issues
 					window.addEventListener('resize', function() {
-						if (map && !mapContent.classList.contains('collapsed')) {
-							map.invalidateSize();
-						}
+						if (map && !mapContent.classList.contains('collapsed')) { map.invalidateSize(); }
 					});
 				});
 			</script>
 			
-			<!-- Pictures Section -->
+			<!-- PICTURES -->
 			<section id="pictures">
 				<button class="collapsible">Pictures From My Scientific Travels</button>
 				<div class="content">
-					<p>Below are some photographs I've taken during my travels for astrophysics (a fair number of these involve food).</p>
-					
+					<p>Below are some photographs I've taken during my travels for astrophysics.</p>
 					<div class="gallery-container">						
 						<div class="gallery-slide">
 							<img src="images/travels/german_castle_wurzbergworkshop_trip.jpg" alt="German Castle Würzburg Workshop">
@@ -973,27 +684,21 @@
 							<div class="gallery-caption">Visiting the Sagrada Família, Barcelona, Spain (2024)</div>
 						</div>						
 					</div>
-					
 					<div class="gallery-nav">
 						<button onclick="prevSlide()">Previous</button>
 						<button onclick="nextSlide()">Next</button>
 					</div>
-					
-					<div class="gallery-dots" id="gallery-dots">
-						<!-- Dots will be added via JavaScript -->
-					</div>
+					<div class="gallery-dots" id="gallery-dots"></div>
 				</div>
 			</section>
 		</div>
 
-		<!-- Footer -->				
 		<footer id="footer">
 			<div class="inner">
 				<ul class="icons">
 					<li><a href="https://x.com/_astro_joshy" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="https://github.com/jpollin98" class="icon brands fa-github"><span class="label">Github</span></a></li>
 					<li><a href="https://orcid.org/0009-0005-6989-3198" class="icon brands fa-orcid"><span class="label">ORCID</span></a></li>
-					<!-- Bluesky Logo -->
 					<li>
 						<a href="https://bsky.app/profile/astrojoshy.bsky.social" class="icon">
 							<img src="images/bluesky-logo.png" alt="Bluesky" class="bluesky-logo" style="width: 24px; height: 24px;">
@@ -1008,15 +713,7 @@
 				</ul>
 			</div>
 		</footer>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-		<script>
-		// The map initialization code I provided goes here
-		document.addEventListener('DOMContentLoaded', function() {
-			// All the map setup code...
-		});
-		</script>
 
-		<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.poptrox.min.js"></script>
 		<script src="assets/js/browser.min.js"></script>
@@ -1024,69 +721,47 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		
-		<!-- Collapsible sections script - IMPROVED -->
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
-				// All sections start expanded by default
 				var coll = document.getElementsByClassName("collapsible");
 				for (var i = 0; i < coll.length; i++) {
-					// Set up click event for each collapsible section
 					coll[i].addEventListener("click", function() {
 						this.classList.toggle("collapsed");
 						var content = this.nextElementSibling;
-						
 						if (this.classList.contains("collapsed")) {
 							content.style.maxHeight = "0";
 							content.classList.add("collapsed");
 						} else {
 							content.classList.remove("collapsed");
-							content.style.maxHeight = "2000px"; // Using a large value that will cover most content
+							content.style.maxHeight = "2000px";
 						}
 					});
 				}
 				
-				// Handle smooth scrolling for navigation links
 				document.querySelectorAll('.navbar a').forEach(anchor => {
 					anchor.addEventListener('click', function(e) {
 						e.preventDefault();
-						
 						const targetId = this.getAttribute('href');
 						const targetElement = document.querySelector(targetId);
-						
-						window.scrollTo({
-							top: targetElement.offsetTop - 60,
-							behavior: 'smooth'
-						});
-						
-						// Update active class
+						window.scrollTo({ top: targetElement.offsetTop - 60, behavior: 'smooth' });
 						document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active'));
 						this.classList.add('active');
 					});
 				});
 				
-				// Highlight active section on scroll
 				window.addEventListener('scroll', function() {
 					let current = '';
 					const sections = document.querySelectorAll('section, header');
-					const navLinks = document.querySelectorAll('.navbar a');
-					
 					sections.forEach(section => {
 						const sectionTop = section.offsetTop - 100;
-						const sectionHeight = section.clientHeight;
-						if (pageYOffset >= sectionTop) {
-							current = section.getAttribute('id');
-						}
+						if (pageYOffset >= sectionTop) { current = section.getAttribute('id'); }
 					});
-					
-					navLinks.forEach(link => {
+					document.querySelectorAll('.navbar a').forEach(link => {
 						link.classList.remove('active');
-						if (link.getAttribute('href').includes(current)) {
-							link.classList.add('active');
-						}
+						if (link.getAttribute('href').includes(current)) { link.classList.add('active'); }
 					});
 				});
 				
-				// Initialize gallery
 				initGallery();
 				const menuToggle = document.getElementById('menuToggle');
 				const navLinks = document.getElementById('navLinks');
@@ -1098,9 +773,7 @@
 					});
 				}
 				
-				// Close mobile menu when a link is clicked
-				const navItems = document.querySelectorAll('.nav-links a');
-				navItems.forEach(item => {
+				document.querySelectorAll('.nav-links a').forEach(item => {
 					item.addEventListener('click', function() {
 						if (window.innerWidth <= 768) {
 							menuToggle.classList.remove('active');
@@ -1108,22 +781,20 @@
 						}
 					});
 				});
-				    // Close mobile menu when clicking outside
-					document.addEventListener('click', function(e) {
-						const isNavbarOrToggle = e.target.closest('.navbar-container');
-						if (!isNavbarOrToggle && navLinks.classList.contains('active')) {
-							menuToggle.classList.remove('active');
-							navLinks.classList.remove('active');
-						}
-					});
+
+				document.addEventListener('click', function(e) {
+					const isNavbarOrToggle = e.target.closest('.navbar-container');
+					if (!isNavbarOrToggle && navLinks.classList.contains('active')) {
+						menuToggle.classList.remove('active');
+						navLinks.classList.remove('active');
+					}
+				});
 			});
 			
-			// Gallery functionality
 			let currentSlide = 0;
 			const slides = document.querySelectorAll('.gallery-slide');
 			
 			function initGallery() {
-				// Create dots for each slide
 				const dotsContainer = document.getElementById('gallery-dots');
 				if (dotsContainer) {
 					for (let i = 0; i < slides.length; i++) {
@@ -1134,39 +805,22 @@
 						dotsContainer.appendChild(dot);
 					}
 				}
-				
-				// Start automatic slideshow
-				setInterval(nextSlide, 5000); // Change slide every 5 seconds
+				setInterval(nextSlide, 5000);
 			}
 			
 			function showSlide(n) {
-				// Hide all slides
-				slides.forEach(slide => {
-					slide.classList.remove('active');
-				});
-				
-				// Update current slide index
+				slides.forEach(slide => slide.classList.remove('active'));
 				currentSlide = n;
 				if (currentSlide >= slides.length) currentSlide = 0;
 				if (currentSlide < 0) currentSlide = slides.length - 1;
-				
-				// Show the current slide
 				slides[currentSlide].classList.add('active');
-				
-				// Update dots
-				const dots = document.querySelectorAll('.gallery-dot');
-				dots.forEach((dot, i) => {
+				document.querySelectorAll('.gallery-dot').forEach((dot, i) => {
 					dot.classList.toggle('active', i === currentSlide);
 				});
 			}
 			
-			function nextSlide() {
-				showSlide(currentSlide + 1);
-			}
-			
-			function prevSlide() {
-				showSlide(currentSlide - 1);
-			}
+			function nextSlide() { showSlide(currentSlide + 1); }
+			function prevSlide() { showSlide(currentSlide - 1); }
 		</script>
 	</body>
 </html>
