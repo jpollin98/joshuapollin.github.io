@@ -133,6 +133,18 @@
 				border-radius: 0 0 5px 5px;
 				margin-bottom: 30px;
 			}
+			.model-viewer-buttons {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 10px;
+				margin-top: 18px;
+			}
+
+			.model-viewer-buttons .button {
+				min-width: 145px;
+				text-align: center;
+			}
 			.content.collapsed {
 				max-height: 0;
 				padding-top: 0;
@@ -516,6 +528,20 @@
 						This interactive tool visualises the three-dimensional ejecta structure and ion distributions from my radiative transfer simulations. It enables direct exploration of asymmetries, composition, and viewing-angle effects that are not captured in one-dimensional models. Additional explosion models will be incorporated into this framework to enable systematic comparison across progenitor scenarios.
 					</p>
 
+					<div class="model-viewer-buttons">
+						<a href="3DOneExpl_dynamic_viewer.html" class="button small" target="_blank">
+							3DOneExpl
+						</a>
+
+						<a href="3DTwoExpl_dynamic_viewer.html" class="button small" target="_blank">
+							3DTwoExpl
+						</a>
+
+						<a href="3DViolentMerger_dynamic_viewer.html" class="button small" target="_blank">
+							3DViolentMerger
+						</a>
+					</div>
+
 				</div>
 
 					<!-- <div class="figure-panel">
@@ -822,7 +848,7 @@
 
 				setTimeout(function() {
 					researchMap.invalidateSize();
-				}, 250);
+				}, 500); // was 250
 			}
 
 			function initGallery() {
