@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
 		<style>
+			.gallery-dot.active { background-color: #333; }
 			.navbar {
 				position: sticky;
 				top: 0;
@@ -238,6 +239,7 @@
 				transition: background-color 0.3s;
 			}
 			.gallery-dot.active { background-color: #333; }
+
 			.figure-panel {
 				background: #fafafa;
 				border-radius: 10px;
@@ -245,8 +247,63 @@
 				box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 				margin: 20px 0;
 			}
-			.figure-panel img { width: 100%; height: auto; border-radius: 6px; display: block; background: white; }
-			.figure-caption { margin-top: 12px; font-size: 0.95em; color: #555; }
+
+			.figure-panel img {
+				width: 100%;
+				height: auto;
+				border-radius: 6px;
+				display: block;
+				background: white;
+			}
+
+			.gif-row.two-gif-row {
+				display: flex;
+				gap: 1rem;
+				align-items: center;
+				justify-content: center;
+				flex-wrap: nowrap;
+			}
+
+			.gif-row.two-gif-row img {
+				width: calc(50% - 0.5rem);
+				height: auto;
+			}
+
+			.interactive-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 1rem;
+				margin-bottom: 10px;
+			}
+
+			.interactive-header h4 {
+				margin: 0;
+				font-size: 1.05em;
+				color: #222;
+			}
+
+			.interactive-container {
+				width: 100%;
+				height: 550px;
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+				background: white;
+			}
+
+			.interactive-container iframe {
+				width: 100%;
+				height: 100%;
+				border: none;
+			}
+
+			.figure-caption {
+				margin-top: 12px;
+				font-size: 0.95em;
+				color: #555;
+			}
+
 			.research-pill-list {
 				display: flex;
 				flex-wrap: wrap;
@@ -283,6 +340,32 @@
 			@media screen and (max-width: 980px) {
 				#header { position: relative; width: 100%; height: auto; overflow: visible; }
 				#main { margin-left: 0; }
+			}
+			#research-map {
+				width: 100%;
+				height: 400px;
+				margin-bottom: 20px;
+				border-radius: 5px;
+				box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+			}
+
+			@media screen and (max-width: 768px) {
+				.gif-row.two-gif-row {
+					flex-wrap: wrap;
+				}
+
+				.gif-row.two-gif-row img {
+					width: 100%;
+				}
+
+				.interactive-header {
+					flex-direction: column;
+					align-items: flex-start;
+				}
+
+				.interactive-container {
+					height: 420px;
+				}
 			}
 		</style>
 	</head>
@@ -407,13 +490,33 @@
 
 <p>A major focus is connecting these models to observations from <strong>JWST</strong>, which is opening new windows into ejecta composition and structure. The variations predicted by my multidimensional calculations are already comparable in scale to features seen in recent JWST data, making this a particularly timely opportunity for direct comparison. I am actively seeking collaborations with researchers working on JWST observations of supernovae and explosive transients.</p>
 
-<p>More broadly, I am developing next-generation NLTE radiative transfer models that can be applied across explosive transients. This includes extending detailed modelling to core-collapse supernovae, enabling consistent comparisons between thermonuclear and massive-star explosions, and building a framework in which radiative transfer is used to directly interpret the nucleosynthetic record encoded in supernova light.</p>
+<p>More broadly, I am developing next-generation NLTE radiative transfer models that can be applied across explosive transients. This includes extending detailed modelling to core-collapse supernovae, enabling consistent comparisons between thermonuclear and massive-star explosions, and building a framework in which radiative transfer is used to directly interpret the nucleosynthetic record encoded in supernova light.</p>					
 					<div class="figure-panel">
-						<div class="gif-row">							
-							<img src="videos/artis_radiative_transfer_asymmetric_blocks.gif" alt="Animation showing photon packets propagating through asymmetric block-structured supernova ejecta" />
-						</div>
-						<p class="figure-caption">This animation mimics how photon packets propagate through the ejecta in my supernova simulations. They illustrate the basic idea behind Monte Carlo radiative transfer: packets are emitted, scatter through the expanding material, convert between packet types, and eventually escape carrying information about the composition, geometry, and density structure of the explosion.</p>
+					<div class="gif-row two-gif-row">							
+						<img src="videos/artis_radiative_transfer_asymmetric_blocks.gif" alt="Animation showing photon packets propagating through asymmetric block-structured supernova ejecta in a two-dimensional view" />
+						<img src="videos/artis_radiative_transfer_asymmetric_blocks_3d.gif" alt="3D animation showing photon packets propagating through asymmetric block-structured supernova ejecta" />
 					</div>
+					<p class="figure-caption">These animations illustrate how photon packets propagate through the ejecta in my supernova simulations, capturing the essential physics of Monte Carlo radiative transfer. Packets are emitted, scatter through the expanding material, undergo interactions that change their type, and ultimately escape carrying information about the composition, geometry, and density structure of the explosion.</p>
+				</div>
+
+				<div class="figure-panel">
+
+					<div class="interactive-header">
+						<h4>Interactive 3D Ejecta Viewer</h4>
+						<a href="3DTwoExpl_dynamic_viewer.html" class="button small" target="_blank">
+							Open Full View
+						</a>
+					</div>
+
+					<div class="interactive-container">
+						<iframe src="3DTwoExpl_dynamic_viewer.html"></iframe>
+					</div>
+
+					<p class="figure-caption">
+						This interactive tool visualises the three-dimensional ejecta structure and ion distributions from my radiative transfer simulations. It enables direct exploration of asymmetries, composition, and viewing-angle effects that are not captured in one-dimensional models. Additional explosion models will be incorporated into this framework to enable systematic comparison across progenitor scenarios.
+					</p>
+
+				</div>
 
 					<!-- <div class="figure-panel">
 						<img src="images/Light_curve_evolution.png" alt="Schematic figure illustrating the diffusion phase, early tail phase, and late tail phase of supernova light-curve evolution" />
@@ -583,12 +686,12 @@
 				</div>
 			</section>
 
-			<!-- MAP -->
+			<!-- MAP -->						
 			<section id="map">
 				<button class="collapsible">My Research Map</button>
 				<div class="content">
 					<p>This map shows places I have lived and locations where I have given research talks or presented my work.</p>
-					<div id="research-map" style="width: 100%; height: 400px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
+					<div id="research-map"></div>
 					<div class="map-legend" style="display: flex; justify-content: center; margin-bottom: 20px;">
 						<div style="margin-right: 20px; display: flex; align-items: center;">
 							<span style="display: inline-block; width: 20px; height: 20px; background-color: #e74c3c; border-radius: 50%; margin-right: 5px;"></span>
@@ -601,59 +704,6 @@
 					</div>
 				</div>
 			</section>
-
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-			<script>
-				document.addEventListener('DOMContentLoaded', function() {
-					const mapCollapsible = document.querySelector('#map .collapsible');
-					const mapContent = document.querySelector('#map .content');
-					let map = null;
-					
-					function initializeMap() {
-						if (map) return;
-						map = L.map('research-map').setView([46.0, -25.0], 3);
-						L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-							attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-						}).addTo(map);
-						const talkIcon = L.divIcon({
-							className: 'custom-marker',
-							html: '<div style="background-color: #e74c3c; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>',
-							iconSize: [20, 20], iconAnchor: [10, 10]
-						});
-						const workIcon = L.divIcon({
-							className: 'custom-marker',
-							html: '<div style="background-color: #3498db; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>',
-							iconSize: [20, 20], iconAnchor: [10, 10]
-						});
-						L.marker([49.4093, 8.6946], {icon: talkIcon}).addTo(map).bindPopup('<strong>Heidelberg, Germany</strong><br>Gave a research talk (2022,2023,2024)');
-						L.marker([41.3851, 2.1734], {icon: talkIcon}).addTo(map).bindPopup('<strong>Barcelona, Spain</strong><br>Conference presentation (2024)');
-						L.marker([53.3498, -6.2603], {icon: talkIcon}).addTo(map).bindPopup('<strong>Dublin, Ireland</strong><br>Research talk (2025)');
-						L.marker([51.5074, -0.1278], {icon: talkIcon}).addTo(map).bindPopup('<strong>London, UK</strong><br>Research talk (2024)');
-						L.marker([51.7520, -1.2577], {icon: talkIcon}).addTo(map).bindPopup('<strong>Oxford, UK</strong><br>Research talk (2024)');
-						L.marker([51.4816, -3.1791], {icon: talkIcon}).addTo(map).bindPopup('<strong>Cardiff, UK</strong><br>Research talk (2023)');
-						L.marker([56.4620, -2.9707], {icon: talkIcon}).addTo(map).bindPopup('<strong>Dundee, UK</strong><br>Workshop (2022)');
-						L.marker([54.7767, -1.5761], {icon: talkIcon}).addTo(map).bindPopup('<strong>Durham, UK</strong><br>Conference Talk / NAM 2025 Session Organiser (2025)');
-						L.marker([54.5973, -5.9301], {icon: workIcon}).addTo(map).bindPopup('<strong>Belfast, Northern Ireland</strong><br>Queen\'s University Belfast');
-						L.marker([44.5646, -123.2620], {icon: workIcon}).addTo(map).bindPopup('<strong>Corvallis, Oregon, USA</strong><br>Oregon State University');
-						setTimeout(function() { map.invalidateSize(); }, 500);
-					}
-					
-					if (mapCollapsible) {
-						mapCollapsible.addEventListener('click', function() {
-							if (!this.classList.contains('collapsed')) {
-								setTimeout(initializeMap, 300);
-							}
-						});
-					}
-					if (mapContent && !mapContent.classList.contains('collapsed')) {
-						setTimeout(initializeMap, 300);
-					}
-					window.addEventListener('resize', function() {
-						if (map && !mapContent.classList.contains('collapsed')) { map.invalidateSize(); }
-					});
-				});
-			</script>
 			
 			<!-- PICTURES -->
 			<section id="pictures">
@@ -726,83 +776,59 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
 		
 		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				var coll = document.getElementsByClassName("collapsible");
-				for (var i = 0; i < coll.length; i++) {
-					coll[i].addEventListener("click", function() {
-						this.classList.toggle("collapsed");
-						var content = this.nextElementSibling;
-						if (this.classList.contains("collapsed")) {
-							content.style.maxHeight = "0";
-							content.classList.add("collapsed");
-						} else {
-							content.classList.remove("collapsed");
-							content.style.maxHeight = "none";  // instead of "2000px"
-						}
-					});
-				}
-				
-				document.querySelectorAll('.navbar a').forEach(anchor => {
-					anchor.addEventListener('click', function(e) {
-						e.preventDefault();
-						const targetId = this.getAttribute('href');
-						const targetElement = document.querySelector(targetId);
-						window.scrollTo({ top: targetElement.offsetTop - 60, behavior: 'smooth' });
-						document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active'));
-						this.classList.add('active');
-					});
-				});
-				
-				window.addEventListener('scroll', function() {
-					let current = '';
-					const sections = document.querySelectorAll('section, header');
-					sections.forEach(section => {
-						const sectionTop = section.offsetTop - 100;
-						if (pageYOffset >= sectionTop) { current = section.getAttribute('id'); }
-					});
-					document.querySelectorAll('.navbar a').forEach(link => {
-						link.classList.remove('active');
-						if (link.getAttribute('href').includes(current)) { link.classList.add('active'); }
-					});
-				});
-				
-				initGallery();
-				const menuToggle = document.getElementById('menuToggle');
-				const navLinks = document.getElementById('navLinks');
-				
-				if (menuToggle) {
-					menuToggle.addEventListener('click', function() {
-						menuToggle.classList.toggle('active');
-						navLinks.classList.toggle('active');
-					});
-				}
-				
-				document.querySelectorAll('.nav-links a').forEach(item => {
-					item.addEventListener('click', function() {
-						if (window.innerWidth <= 768) {
-							menuToggle.classList.remove('active');
-							navLinks.classList.remove('active');
-						}
-					});
-				});
-
-				document.addEventListener('click', function(e) {
-					const isNavbarOrToggle = e.target.closest('.navbar-container');
-					if (!isNavbarOrToggle && navLinks.classList.contains('active')) {
-						menuToggle.classList.remove('active');
-						navLinks.classList.remove('active');
-					}
-				});
-			});
-			
 			let currentSlide = 0;
 			const slides = document.querySelectorAll('.gallery-slide');
-			
+			let researchMap = null;
+
+			function initialiseResearchMap() {
+				const mapElement = document.getElementById('research-map');
+				if (!mapElement || typeof L === 'undefined') return;
+
+				if (!researchMap) {
+					researchMap = L.map('research-map').setView([46.0, -25.0], 3);
+
+					L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+						attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+					}).addTo(researchMap);
+
+					const talkIcon = L.divIcon({
+						className: 'custom-marker',
+						html: '<div style="background-color: #e74c3c; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>',
+						iconSize: [20, 20],
+						iconAnchor: [10, 10]
+					});
+
+					const workIcon = L.divIcon({
+						className: 'custom-marker',
+						html: '<div style="background-color: #3498db; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>',
+						iconSize: [20, 20],
+						iconAnchor: [10, 10]
+					});
+
+					L.marker([49.4093, 8.6946], {icon: talkIcon}).addTo(researchMap).bindPopup('<strong>Heidelberg, Germany</strong><br>Gave a research talk (2022, 2023, 2024)');
+					L.marker([41.3851, 2.1734], {icon: talkIcon}).addTo(researchMap).bindPopup('<strong>Barcelona, Spain</strong><br>Conference presentation (2024)');
+					L.marker([53.3498, -6.2603], {icon: talkIcon}).addTo(researchMap).bindPopup('<strong>Dublin, Ireland</strong><br>Research talk (2025)');
+					L.marker([51.5074, -0.1278], {icon: talkIcon}).addTo(researchMap).bindPopup('<strong>London, UK</strong><br>Research talk (2024)');
+					L.marker([51.7520, -1.2577], {icon: talkIcon}).addTo(researchMap).bindPopup('<strong>Oxford, UK</strong><br>Research talk (2024)');
+					L.marker([51.4816, -3.1791], {icon: talkIcon}).addTo(researchMap).bindPopup('<strong>Cardiff, UK</strong><br>Research talk (2023)');
+					L.marker([56.4620, -2.9707], {icon: talkIcon}).addTo(researchMap).bindPopup('<strong>Dundee, UK</strong><br>Workshop (2022)');
+					L.marker([54.7767, -1.5761], {icon: talkIcon}).addTo(researchMap).bindPopup('<strong>Durham, UK</strong><br>Conference talk / NAM 2025 session organiser (2025)');
+					L.marker([54.5973, -5.9301], {icon: workIcon}).addTo(researchMap).bindPopup('<strong>Belfast, Northern Ireland</strong><br>Queen\\'s University Belfast');
+					L.marker([44.5646, -123.2620], {icon: workIcon}).addTo(researchMap).bindPopup('<strong>Corvallis, Oregon, USA</strong><br>Oregon State University');
+				}
+
+				setTimeout(function() {
+					researchMap.invalidateSize();
+				}, 250);
+			}
+
 			function initGallery() {
 				const dotsContainer = document.getElementById('gallery-dots');
-				if (dotsContainer) {
+
+				if (dotsContainer && dotsContainer.children.length === 0) {
 					for (let i = 0; i < slides.length; i++) {
 						const dot = document.createElement('span');
 						dot.classList.add('gallery-dot');
@@ -811,22 +837,143 @@
 						dotsContainer.appendChild(dot);
 					}
 				}
+
 				setInterval(nextSlide, 5000);
 			}
 			
 			function showSlide(n) {
-				slides.forEach(slide => slide.classList.remove('active'));
+				if (!slides.length) return;
+
+				slides.forEach(function(slide) {
+					slide.classList.remove('active');
+				});
+
 				currentSlide = n;
+
 				if (currentSlide >= slides.length) currentSlide = 0;
 				if (currentSlide < 0) currentSlide = slides.length - 1;
+
 				slides[currentSlide].classList.add('active');
-				document.querySelectorAll('.gallery-dot').forEach((dot, i) => {
+
+				document.querySelectorAll('.gallery-dot').forEach(function(dot, i) {
 					dot.classList.toggle('active', i === currentSlide);
 				});
 			}
 			
-			function nextSlide() { showSlide(currentSlide + 1); }
-			function prevSlide() { showSlide(currentSlide - 1); }
+			function nextSlide() {
+				showSlide(currentSlide + 1);
+			}
+
+			function prevSlide() {
+				showSlide(currentSlide - 1);
+			}
+
+			document.addEventListener('DOMContentLoaded', function() {
+				const coll = document.getElementsByClassName("collapsible");
+
+				for (let i = 0; i < coll.length; i++) {
+					coll[i].addEventListener("click", function() {
+						this.classList.toggle("collapsed");
+						const content = this.nextElementSibling;
+
+						if (this.classList.contains("collapsed")) {
+							content.style.maxHeight = "0";
+							content.classList.add("collapsed");
+						} else {
+							content.classList.remove("collapsed");
+							content.style.maxHeight = "none";
+
+							if (this.closest('#map')) {
+								initialiseResearchMap();
+							}
+						}
+					});
+				}
+				
+				document.querySelectorAll('.navbar a').forEach(function(anchor) {
+					anchor.addEventListener('click', function(e) {
+						e.preventDefault();
+
+						const targetId = this.getAttribute('href');
+						const targetElement = document.querySelector(targetId);
+						if (!targetElement) return;
+
+						window.scrollTo({
+							top: targetElement.offsetTop - 60,
+							behavior: 'smooth'
+						});
+
+						document.querySelectorAll('.navbar a').forEach(function(a) {
+							a.classList.remove('active');
+						});
+
+						this.classList.add('active');
+
+						if (targetId === '#map') {
+							setTimeout(initialiseResearchMap, 350);
+						}
+					});
+				});
+				
+				window.addEventListener('scroll', function() {
+					let current = '';
+					const sections = document.querySelectorAll('section, header');
+
+					sections.forEach(function(section) {
+						const sectionTop = section.offsetTop - 100;
+						if (window.pageYOffset >= sectionTop) {
+							current = section.getAttribute('id');
+						}
+					});
+
+					document.querySelectorAll('.navbar a').forEach(function(link) {
+						link.classList.remove('active');
+
+						if (current && link.getAttribute('href').includes(current)) {
+							link.classList.add('active');
+						}
+					});
+				});
+				
+				initGallery();
+				initialiseResearchMap();
+
+				const menuToggle = document.getElementById('menuToggle');
+				const navLinks = document.getElementById('navLinks');
+				
+				if (menuToggle && navLinks) {
+					menuToggle.addEventListener('click', function() {
+						menuToggle.classList.toggle('active');
+						navLinks.classList.toggle('active');
+					});
+				}
+				
+				document.querySelectorAll('.nav-links a').forEach(function(item) {
+					item.addEventListener('click', function() {
+						if (window.innerWidth <= 768 && menuToggle && navLinks) {
+							menuToggle.classList.remove('active');
+							navLinks.classList.remove('active');
+						}
+					});
+				});
+
+				document.addEventListener('click', function(e) {
+					if (!menuToggle || !navLinks) return;
+
+					const isNavbarOrToggle = e.target.closest('.navbar-container');
+
+					if (!isNavbarOrToggle && navLinks.classList.contains('active')) {
+						menuToggle.classList.remove('active');
+						navLinks.classList.remove('active');
+					}
+				});
+
+				window.addEventListener('resize', function() {
+					if (researchMap) {
+						researchMap.invalidateSize();
+					}
+				});
+			});
 		</script>
 	</body>
 </html>
